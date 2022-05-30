@@ -13,12 +13,8 @@ func BuildRoutes(app *App) http.Handler {
 	r.Post("/services", app.HandleAddService)
 	r.Delete("/services/{service_name}", app.HandleDeleteService)
 
-	//work-order
-	r.Post("/work-order/create", RemoteServiceInterceptor(app.registry, Gateway))
-	r.Put("/work-order/{id}/set-state", RemoteServiceInterceptor(app.registry, Gateway))
-	r.Put("/work-order/{id}/add-assignee", RemoteServiceInterceptor(app.registry, Gateway))
-	r.Put("/work-order/{id}/add-fragment", RemoteServiceInterceptor(app.registry, Gateway))
-	//...another commands
+	//work-order proxy
+	r.Handle("/work-order/*", RemoteServiceInterceptor(app.registry, Gateway))
 
 	return r
 }
