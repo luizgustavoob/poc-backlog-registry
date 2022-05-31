@@ -17,6 +17,20 @@ Exemplo de implementação de um service registry + proxy.
 * Backlog para manipular as work-orders do processo operacional "shipment-injection".
 * No start-up, esse serviço se registra em lego-backlog-registry.
 
+## Execução
+
+1) ```
+    cd lego-backlog-registry
+    go run cmd/main.go
+   ```
+2) ```
+    cd lego-backlog-hu-assembly 
+    go run cmd/main.go
+   ```
+3) ```
+    cd lego-backlog-shipment-injection 
+    go run cmd/main.go
+   ```
 ______________
 
 As chamadas devem ser direcionadas a lego-backlog-registry. Idealmente hu-assembly e shipment-injection ficam "escondidas".
