@@ -18,7 +18,7 @@ func remoteServiceMiddleware(finder remoteServiceFinder) func(http.Handler) http
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			ctx := r.Context()
 
-			if strings.HasPrefix(r.URL.Path, "/work-order/") {
+			if strings.HasPrefix(r.URL.Path, "/commands") {
 				processName := r.Header.Get("x-process-name")
 				if processName == "" {
 					internalHandleError(w, errors.New("header x-process-name not informed"), http.StatusBadRequest)

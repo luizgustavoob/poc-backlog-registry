@@ -36,90 +36,39 @@ ______________
 As chamadas devem ser direcionadas a lego-backlog-registry. Idealmente hu-assembly e shipment-injection ficam "escondidas".
 
 ```
-curl --location --request POST 'http://localhost:8080/work-order/create' \
---header 'x-process-name: lego-backlog-hu-assembly' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "work_order": {
-        "id": "id",
-        "process": "process",
-        "status": "status"
-    }
-}'
-```
-
-```
-curl --location --request PUT 'http://localhost:8080/work-order/123/set-state' \
---header 'x-process-name: lego-backlog-hu-assembly' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "state": "close"
-}'
-```
-
-
-```
-curl --location --request PUT 'http://localhost:8080/work-order/1090/add-assignee' \
---header 'x-process-name: lego-backlog-hu-assembly' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "rep": {
-        "id": "joao"
-    }
-}'
-```
-
-```
-curl --location --request PUT 'http://localhost:8080/work-order/123/add-fragment' \
---header 'x-process-name: lego-backlog-hu-assembly' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "fragment": {
-        "placa": "ABC1234"
-    }
-}'
-```
-
-```
-curl --location --request POST 'http://localhost:8080/work-order/create' \
+curl --location --request POST 'http://localhost:8080/commands' \
 --header 'x-process-name: lego-backlog-shipment-injection' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "work_order": {
-        "id": "id",
-        "process": "process",
-        "status": "status"
-    }
+    "type": "create-workorder",
+    "target": {
+        "type": "target",
+        "id": "id"
+    },
+    "process": "outbound",
+    "status": "pending",
+    "assignees": [
+        "Rep1"
+    ],
+    "params": ""
 }'
 ```
 
 ```
-curl --location --request PUT 'http://localhost:8080/work-order/123/set-state' \
---header 'x-process-name: lego-backlog-shipment-injection' \
+curl --location --request POST 'http://localhost:8080/commands' \
+--header 'x-process-name: lego-backlog-hu-assembly' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "state": "close"
-}'
-```
-
-```
-curl --location --request PUT 'http://localhost:8080/work-order/1090/add-assignee' \
---header 'x-process-name: lego-backlog-shipment-injection' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "rep": {
-        "id": "joao"
-    }
-}'
-```
-
-```
-curl --location --request PUT 'http://localhost:8080/work-order/123/add-fragment' \
---header 'x-process-name: lego-backlog-shipment-injection' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "fragment": {
-        "placa": "ABC1234"
-    }
+    "type": "create-workorder",
+    "target": {
+        "type": "target",
+        "id": "id"
+    },
+    "process": "outbound",
+    "status": "pending",
+    "assignees": [
+        "Rep1"
+    ],
+    "params": ""
 }'
 ```

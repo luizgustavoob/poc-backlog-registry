@@ -23,7 +23,7 @@ func (h *createWorkOrderHandler) Method() string {
 }
 
 func (h *createWorkOrderHandler) Pattern() string {
-	return "/work-order/create"
+	return "/commands"
 }
 
 func (h *createWorkOrderHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {

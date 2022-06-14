@@ -17,7 +17,7 @@ func BuildRoutes(app *App) http.Handler {
 	r.Delete("/services/{service_name}", app.HandleDeleteService)
 
 	//work-order proxy
-	r.HandleFunc("/work-order/*", proxy)
+	r.HandleFunc("/commands", proxy)
 
 	return r
 }

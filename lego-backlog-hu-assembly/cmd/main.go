@@ -19,13 +19,9 @@ func main() {
 	// handlers
 	pingHandler := handlers.NewPingHandler()
 	createWorkOrderHandler := handlers.NewCreateWorkOrderHandler(workOrderService)
-	setStatusWorkOrderHandler := handlers.NewSetStatusWorkOrderHandler(workOrderService)
-	addAssigneeWorkOrderHandler := handlers.NewAddAssigneeWorkOrderHandler(workOrderService)
-	addFragmentWorkOrderHandler := handlers.NewAddFragmentWorkOrderHandler(workOrderService)
 
 	// server
-	srv := server.NewServer(registry, pingHandler, createWorkOrderHandler,
-		setStatusWorkOrderHandler, addAssigneeWorkOrderHandler, addFragmentWorkOrderHandler)
+	srv := server.NewServer(registry, pingHandler, createWorkOrderHandler)
 	srv.ListenAndServe()
 
 	// shutdown
